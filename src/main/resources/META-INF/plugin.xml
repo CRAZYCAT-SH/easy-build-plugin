@@ -1,0 +1,53 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>com.github.easy-build-plugin</id>
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+    <name>easy-build-plugin</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor email="602642037@qq.com" url="https://crazycat-sh.github.io/">crazycat-sh</vendor>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+    <description><![CDATA[
+   <p>GitLab流水线发布工具</p>
+        <b>功能亮点：</b>
+        <ul>
+            <li>直接构建：构建勾选的项目</li>
+            <li>合并动态构建：合并勾选项目功能分支代码到构建分支，
+            并根据构建时间与代码更新时间判断代码是否有更新，
+            更会构建有代码更新的项目</li>
+        </ul>
+  ]]></description>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- 注册配置界面 -->
+        <projectConfigurable
+                instance="com.github.build.plugin.Configurable" />
+        <!-- 注册工具窗口 -->
+        <toolWindow
+                id="BuildTool"
+                anchor="right"
+                factoryClass="com.github.build.plugin.ToolWindow" />
+    </extensions>
+
+    <actions>
+        <action
+                id="BuildTool.ExecuteBuild"
+                class="com.github.build.plugin.BuildAction"
+                text="Execute Build"
+                description="Run selected build task">
+            <add-to-group group-id="MainToolBar" anchor="last"/>
+        </action>
+    </actions>
+</idea-plugin>
