@@ -5,7 +5,7 @@
 
     <!-- Public plugin name should be written in Title Case.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
-    <name>easy-build-plugin</name>
+    <name>easy-build-gitlab</name>
 
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
     <vendor email="602642037@qq.com" url="https://crazycat-sh.github.io/">crazycat-sh</vendor>
@@ -14,14 +14,15 @@
          Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
     <description><![CDATA[
-   <p>GitLab流水线发布工具</p>
-        <b>功能亮点：</b>
-        <ul>
-            <li>直接构建：构建勾选的项目</li>
-            <li>合并动态构建：合并勾选项目功能分支代码到构建分支，
-            并根据构建时间与代码更新时间判断代码是否有更新，
-            更会构建有代码更新的项目</li>
-        </ul>
+[GitLab Pipeline Tool] A powerful IntelliJ plugin for GitLab CI/CD management.
+Key Features:
+✔ Direct Build: Build selected projects with one click
+✔ Smart Merge: Automatically merge feature branches to build branch
+✔ Change Detection: Only rebuild projects with code changes based on timestamps
+支持功能：
+- 勾选式项目构建
+- 动态分支合并
+- 变更检测构建
   ]]></description>
 
     <!-- Product and plugin compatibility requirements.
