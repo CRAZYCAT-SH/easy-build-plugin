@@ -78,16 +78,6 @@ class ToolWindow : ToolWindowFactory {
 
         // 环境列表从配置中读取，构建时通过弹窗选择，不在主界面展示
 
-        val projectSelectAllCheckBox = JCheckBox("全选").apply {
-            addActionListener {
-                val selected = isSelected
-                val panel = projectListPanelRef?.get() ?: return@addActionListener
-                for (i in 0 until panel.componentCount) {
-                    (panel.getComponent(i) as? JCheckBox)?.isSelected = selected
-                }
-            }
-        }
-
         val projectListPanel = JPanel().apply {
             layout = BoxLayout(this, BoxLayout.Y_AXIS)
             projectCheckBoxes.forEach { checkBox ->
@@ -95,6 +85,13 @@ class ToolWindow : ToolWindowFactory {
             }
         }
         projectListPanelRef = WeakReference(projectListPanel)
+
+        val projectSelectAllCheckBox = JCheckBox("全选").apply {
+            addActionListener {
+                val selected = isSelected
+                projectCheckBoxes.forEach { it.isSelected = selected }
+            }
+        }
 
         // 环境选择改为构建时弹窗，不在主界面展示
 
@@ -179,26 +176,21 @@ class ToolWindow : ToolWindowFactory {
         fun selectedProjects(): List<String> {
             val currentConfig = PluginConfiguration.getInstance(project)
             val items: List<PluginConfiguration.ProjectItem> = currentConfig.projects
-            val panel = projectListPanelRef?.get()
 
-            if (panel == null || items.isEmpty()) {
-                return if (items.isNotEmpty()) listOf(items[0].value) else emptyList()
+            if (items.isEmpty()) {
+                return emptyList()
             }
 
-            val max = items.size.coerceAtMost(panel.componentCount)
+            val max = items.size.coerceAtMost(projectCheckBoxes.size)
             val selected = mutableListOf<String>()
             for (i in 0 until max) {
-                val checkBox = panel.getComponent(i) as? JCheckBox ?: continue
+                val checkBox = projectCheckBoxes[i]
                 if (checkBox.isSelected) {
                     selected.add(items[i].value)
                 }
             }
 
-            return if (selected.isNotEmpty()) {
-                selected
-            } else {
-                listOf(items[0].value)
-            }
+            return selected
         }
 
         fun selectedEnvs(): List<String>? {
@@ -260,11 +252,18 @@ class ToolWindow : ToolWindowFactory {
 
         fun runBuild(buildAction: String) {
             val projectsSelected = selectedProjects()
+            
+            if (projectsSelected.isEmpty()) {
+                consoleView.clear()
+                consoleView.print("请至少选择一个项目进行构建\n", ConsoleViewContentType.ERROR_OUTPUT)
+                return
+            }
+            
             val envsSelected = selectedEnvs() ?: return
 
-            if (projectsSelected.isEmpty() || envsSelected.isEmpty()) {
+            if (envsSelected.isEmpty()) {
                 consoleView.clear()
-                consoleView.print("No projects or environments selected\n", ConsoleViewContentType.ERROR_OUTPUT)
+                consoleView.print("请至少选择一个构建环境\n", ConsoleViewContentType.ERROR_OUTPUT)
                 return
             }
 
