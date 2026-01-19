@@ -1,0 +1,14 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- 深色背景圆形 -->
+    <circle cx="20" cy="20" r="19" fill="#292961" />
+    <!-- 狐狸头（亮色） -->
+    <!-- 狐狸头（亮色） -->C 15 10, 12 12, 12 15 C 12 18, 15 21, 20 21 C 25 21, 28 18, 28 15 C 28 12, 25 10, 20 10 Z" fill="#FFFFFF" />
+    <path d="M20 10 C 15 10, 12 12, 12 15 C 12 18, 15 21, 20 21 C 25 21, 28 18, 28 15 C 28 12, 25 10, 20 10 Z" fill="#FFFFFF" />
+    <circle cx="17" cy="15" r="2" fill="#292961" />
+    <circle cx="23" cy="15" r="2" fill="#292961" />
+    <circle cx="20" cy="20" r="6" fill="#292961" stroke="#FFFFFF" stroke-width="1.5" />
+    <!-- 齿轮（亮色描边） --> 20 18 M 20 22 L 20 24 M 16 20 L 18 20 M 22 20 L 24 20" stroke="#FFFFFF" stroke-width="1" />
+    <circle cx="20" cy="20" r="6" fill="#292961" stroke="#FFFFFF" stroke-width="1.5" />FFFFF" stroke-width="1" />
+    <path d="M20 16 L 20 18 M 20 22 L 20 24 M 16 20 L 18 20 M 22 20 L 24 20" stroke="#FFFFFF" stroke-width="1" />
+    <path d="M17 17 L 18 18 M 22 22 L 23 23 M 17 23 L 18 22 M 22 17 L 23 18" stroke="#FFFFFF" stroke-width="1" />
+</svg>
